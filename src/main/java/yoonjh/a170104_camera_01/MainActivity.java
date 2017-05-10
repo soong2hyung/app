@@ -1,37 +1,16 @@
 package yoonjh.a170104_camera_01;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.tsengvn.typekit.Typekit;
 import com.tsengvn.typekit.TypekitContextWrapper;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-
-import static android.R.attr.button;
 public class MainActivity extends AppCompatActivity {
-
     //슬라이드 열기/닫기 플래그
     boolean isPageOpen = false;
     //슬라이드 열기 애니메이션
@@ -44,22 +23,18 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout slidingPage01;
     //메인페이지 레이아웃
     LinearLayout mainPage01;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //UI
-        slidingPage01 = (LinearLayout)findViewById(R.id.slidingPage01);
         mainPage01 = (LinearLayout)findViewById(R.id.mainPage01);
-
+        slidingPage01 = (LinearLayout)findViewById(R.id.slidingPage01);
         //애니메이션
         translateRightAnim = AnimationUtils.loadAnimation(this, R.anim.translate_right);
         translateLeftAnim = AnimationUtils.loadAnimation(this, R.anim.translate_left);
         fadeInRightAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in_right);
         fadeOutLeftAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out_left);
-
         //애니메이션 리스너 설정
         SlidingPageAnimationListener animationListener = new SlidingPageAnimationListener();
         translateLeftAnim.setAnimationListener(animationListener);
@@ -67,12 +42,10 @@ public class MainActivity extends AppCompatActivity {
         fadeInRightAnim.setAnimationListener(animationListener);
         fadeOutLeftAnim.setAnimationListener(animationListener);
     }
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(TypekitContextWrapper.wrap(newBase));
     }
-
     //버튼
     public void onButton1Clicked(View v){
         //닫기
@@ -104,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
             //슬라이드 닫기->열기
             else{
-
             }
         }
         @Override

@@ -11,7 +11,7 @@ public class CustomFontStartApp extends Application {
 
         //Custom font
         Typekit.getInstance()
-                .addNormal(Typekit.createFromAsset(this, "nanum_normal.ttf"))
-                .addBold(Typekit.createFromAsset(this, "nanum_bold.ttf"));
+                .addNormal(Typekit.createFromAsset(this, "nbgothic_normal.otf"))
+                .addBold(Typekit.createFromAsset(this, "nbgothic_bold.otf"));
     }
 }
