@@ -37,8 +37,8 @@
             android:layout_margin="20dp"
             android:id="@+id/filelist"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent"
+            android:choiceMode="multipleChoice"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 android:text="갤러리에서 가져오기"/>
         </LinearLayout>
     </LinearLayout>
-    <!-- 사이드바 -->
+    <!--사이드바-->
     <include
         android:id="@+id/slidingPage01"
         layout="@layout/sidebar"/>
