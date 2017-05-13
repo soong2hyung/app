@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
@@ -34,17 +32,18 @@
                 android:textSize="13dp" />
         </LinearLayout>
         <ListView
-            android:layout_margin="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:id="@+id/filelist"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:choiceMode="multipleChoice"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
         <include
+            android:visibility="gone"
+            android:id="@+id/subMenuBar01"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:id="@+id/subMenuBar01"
-            layout="@layout/sub_menu_bar"/>
+            layout="@layout/sub_menu_bar" />
         <LinearLayout
             android:visibility="gone"
             android:layout_width="match_parent"
@@ -65,13 +64,13 @@
                 android:onClick="mOnClick"
                 android:text="상위폴더"/>
             <Button
-                android:id="@+id/btnNewDirectory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="mOnClick"
                 android:text="새폴더"/>
         </LinearLayout>
+
         <LinearLayout
             android:visibility="gone"
             android:layout_width="match_parent"
@@ -90,9 +89,16 @@
                 android:layout_weight="1"
                 android:onClick="mOnClick"
                 android:text="갤러리에서 가져오기"/>
+            <Button
+                android:id="@+id/btnRemoveDirectory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="mOnClick"
+                android:text="삭제"/>
         </LinearLayout>
     </LinearLayout>
-    <!--사이드바-->
+    <!-- 사이드바 -->
     <include
         android:id="@+id/slidingPage01"
         layout="@layout/sidebar"/>

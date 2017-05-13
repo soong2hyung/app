@@ -10,27 +10,41 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
-
 public class MainActivity extends AppCompatActivity {
+    //슬라이드 열기/닫기 플래그
     boolean isPageOpen = false;
+    //슬라이드 열기 애니메이션
     Animation translateLeftAnim;
+    Animation fadeInRightAnim;
+    //슬라이드 닫기 애니메이션
     Animation translateRightAnim;
+    Animation fadeOutLeftAnim;
+    //슬라이드 레이아웃
     LinearLayout slidingPage01;
+    //메인페이지 레이아웃
     LinearLayout mainPage01;
+
+    Intent slide_intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //UI
         mainPage01 = (LinearLayout)findViewById(R.id.mainPage01);
         slidingPage01 = (LinearLayout)findViewById(R.id.slidingPage01);
         //애니메이션
         translateRightAnim = AnimationUtils.loadAnimation(this, R.anim.translate_right);
         translateLeftAnim = AnimationUtils.loadAnimation(this, R.anim.translate_left);
+        fadeInRightAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in_right);
+        fadeOutLeftAnim = AnimationUtils.loadAnimation(this, R.anim.fade_out_left);
         //애니메이션 리스너 설정
         SlidingPageAnimationListener animationListener = new SlidingPageAnimationListener();
         translateLeftAnim.setAnimationListener(animationListener);
         translateRightAnim.setAnimationListener(animationListener);
+        fadeInRightAnim.setAnimationListener(animationListener);
+        fadeOutLeftAnim.setAnimationListener(animationListener);
     }
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -42,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         if(isPageOpen){
             //애니메이션 시작
             slidingPage01.startAnimation(translateLeftAnim);
+            mainPage01.startAnimation(fadeInRightAnim);
             for(int i=0; i<mainPage01.getChildCount(); i++)//mainPage 이하 활성화
                 mainPage01.getChildAt(i).setClickable(true);
             isPageOpen = false;
@@ -50,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         else{
             slidingPage01.setVisibility(View.VISIBLE);
             slidingPage01.startAnimation(translateRightAnim);
+            mainPage01.startAnimation(fadeOutLeftAnim);
             for(int i=0; i<mainPage01.getChildCount(); i++)//비활성화
                 mainPage01.getChildAt(i).setClickable(false);
             isPageOpen = true;
@@ -77,9 +93,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void MFOnClick(View v)
-    {
-        Intent intent = new Intent(this, FileExplorer.class);
-        startActivity(intent);
+    public void MFOnClick(View v) {
+        switch (v.getId()) {
+            case R.id.mainpage:
+                break;
+            case R.id.pagelist:
+                slide_intent = new Intent(this, FileExplorer.class);
+                startActivity(slide_intent);
+                break;
+            case R.id.pagemake:
+                break;
+            case R.id.notice:
+                break;
+            case R.id.favorite:
+                break;
+            case R.id.recentread:
+                break;
+            case R.id.importfile:
+                break;
+            case R.id.pdfrender:
+                slide_intent = new Intent(this, PDFRenderer.class);
+                startActivity(slide_intent);
+                break;
+        }
     }
+
 }

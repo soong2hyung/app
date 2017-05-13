@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,7 +41,7 @@ public class FileExplorer extends Activity {
     ListView mFileList;
     ListViewAdapter mAdapter;
     ImageView modifyButton;
-    CheckBox modifyCheckBox;
+    ImageView newFolderButton;
     ArrayList<String> arFiles;
     Uri mImageCaptureUri;
 
@@ -51,6 +50,7 @@ public class FileExplorer extends Activity {
     Animation translateLeftAnim;
     Animation translateRightAnim;
     LinearLayout slidingPage01;
+    LinearLayout subMenuBar01;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class FileExplorer extends Activity {
         arFiles = new ArrayList<String>();
 
         //SD카드 루트 가져옴
-        mRoot = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mRoot = Environment.getExternalStorageDirectory().getAbsolutePath() + "/eduA";
         mCurrent = mRoot;
 
         //어댑터를 생성하고 연결해줌
@@ -72,8 +72,10 @@ public class FileExplorer extends Activity {
 
         modifyButton = (ImageView)findViewById(R.id.list_modify_btn);
         modifyButton.setVisibility(View.VISIBLE);
-
+        newFolderButton = (ImageView)findViewById(R.id.btnNewDirectory);
+        newFolderButton.setVisibility(View.VISIBLE);
         slidingPage01 = (LinearLayout)findViewById(R.id.slidingPage01);
+        subMenuBar01 = (LinearLayout)findViewById(R.id.subMenuBar01);
         //애니메이션
         translateRightAnim = AnimationUtils.loadAnimation(this, R.anim.translate_right);
         translateLeftAnim = AnimationUtils.loadAnimation(this, R.anim.translate_left);
@@ -88,8 +90,6 @@ public class FileExplorer extends Activity {
             new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    // TODO Auto-generated method stub
-
                     String Name = arFiles.get(position);//클릭된 위치의 값을 가져옴
                     if(id != R.id.listFavorImage01) {
                         if (Name == ".")//루트
@@ -156,14 +156,12 @@ public class FileExplorer extends Activity {
                             Toast.makeText(FileExplorer.this, "이미 같은 이름의 폴더가 존재합니다.", Toast.LENGTH_SHORT).show();
                         }
                         refreshFiles();//리프레쉬
-
                     }
                 });
                 alert.setNegativeButton("취소",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                     }
                 });
-
                 alert.show();
                 break;
 
@@ -327,7 +325,6 @@ public class FileExplorer extends Activity {
 
     /** Get Bitmap's height **/
     public static int getBitmapOfHeight( String fileName ){
-
         try {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
@@ -360,11 +357,13 @@ public class FileExplorer extends Activity {
     public void onButton2Clicked(View v){
         //닫기
         if(isListModifyOn){
+            subMenuBar01.setVisibility(View.GONE);
             mAdapter.isCheckBoxDraw = false;
             isListModifyOn = false;
         }
         //열기
         else{
+            subMenuBar01.setVisibility(View.VISIBLE);
             mAdapter.isCheckBoxDraw = true;
             isListModifyOn = true;
         }
