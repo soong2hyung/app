@@ -10,6 +10,9 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.tsengvn.typekit.TypekitContextWrapper;
+
+import kr.co.edu_a.mooil.R;
+
 public class MainActivity extends AppCompatActivity {
     //슬라이드 열기/닫기 플래그
     boolean isPageOpen = false;

@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import kr.co.edu_a.mooil.R;
+
 public class ListViewAdapter extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
-
     // ListViewAdapter의 생성자
     public ListViewAdapter() {
-
     }
 
     // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
@@ -42,6 +42,7 @@ public class ListViewAdapter extends BaseAdapter {
         ImageView iconImageView = (ImageView) convertView.findViewById(R.id.listFileImage1) ;
         TextView titleTextView = (TextView) convertView.findViewById(R.id.listFileText1) ;
         TextView descTextView = (TextView) convertView.findViewById(R.id.listFileText2) ;
+        ImageView favorImageView = (ImageView) convertView.findViewById(R.id.listFavorImage01) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         ListViewItem listViewItem = listViewItemList.get(position);
@@ -50,6 +51,7 @@ public class ListViewAdapter extends BaseAdapter {
         iconImageView.setImageDrawable(listViewItem.getIcon());
         titleTextView.setText(listViewItem.getTitle());
         descTextView.setText(listViewItem.getDesc());
+        favorImageView.setImageDrawable(listViewItem.getFavor());
 
         return convertView;
     }
@@ -67,12 +69,13 @@ public class ListViewAdapter extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable icon, String title, String desc) {
+    public void addItem(Drawable icon, String title, String desc, Drawable favor) {
         ListViewItem item = new ListViewItem();
 
         item.setIcon(icon);
         item.setTitle(title);
         item.setDesc(desc);
+        item.setFavor(favor);
 
         listViewItemList.add(item);
     }

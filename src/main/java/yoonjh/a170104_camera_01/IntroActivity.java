@@ -1,19 +1,16 @@
 package yoonjh.a170104_camera_01;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+
+import kr.co.edu_a.mooil.R;
 
 public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {

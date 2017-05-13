@@ -23,6 +23,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+import kr.co.edu_a.mooil.R;
+
 public class FileExplorer extends Activity {
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
@@ -152,22 +154,20 @@ public class FileExplorer extends Activity {
         //파일이 있다면?
         if(files != null){
             //여기서 출력을 해줌
-            mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_folder), ".", "기본 폴더로") ;
+            mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_favor_off), ".", "기본 폴더로", ContextCompat.getDrawable(this, R.drawable.list_null));
             arFiles.add(".");
-            mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_file), "..", "상위 폴더로") ;
+            mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_favor_off), ".", "기본 폴더로", ContextCompat.getDrawable(this, R.drawable.list_null));
             arFiles.add("..");
             for(int i = 0; i < files.length;i++){
                 String Path = mCurrent + "/" + files[i];
                 String Name = "";
                 File f = new File(Path);
                 if(f.isDirectory()){
-                    Name = "[" + files[i] + "]";//디렉토리면 []를 붙여주고
-                    mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_folder),
-                            Name, "폴더") ;
+                    Name = "" + files[i] + "";//디렉토리면 []를 붙여주고
+                    mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_favor_off), Name, "Folder", ContextCompat.getDrawable(this, R.drawable.list_favor_off)) ;
                 }else{
                     Name = files[i];
-                    mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_file),
-                            Name, "파일") ;
+                    mAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.list_favor_off), Name, "File", ContextCompat.getDrawable(this, R.drawable.list_favor_off)) ;
                 }
                 arFiles.add(Name);//배열리스트에 추가해줌
             }

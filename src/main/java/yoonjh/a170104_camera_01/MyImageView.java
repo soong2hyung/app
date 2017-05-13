@@ -8,12 +8,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import static android.R.attr.path;
+import kr.co.edu_a.mooil.R;
 
 /**
  * Created by JihoYoon on 2017-04-02.

@@ -13,6 +13,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import kr.co.edu_a.mooil.R;
+
 /**
  * Created by JihoYoon on 2017-04-02.
  */
@@ -37,7 +39,7 @@ public class Memorize extends AppCompatActivity{
 
             Canvas c = new Canvas();
 
-            Bitmap mainImage = BitmapFactory.decodeResource(getResources(),R.drawable.subnote);
+            Bitmap mainImage = BitmapFactory.decodeResource(getResources(), R.drawable.subnote);
             Bitmap mask = BitmapFactory.decodeResource(getResources(), R.drawable.subnote_masking);
             Bitmap result = Bitmap.createBitmap(mainImage .getWidth(), mainImage .getHeight(), Bitmap.Config.ARGB_8888);
 
